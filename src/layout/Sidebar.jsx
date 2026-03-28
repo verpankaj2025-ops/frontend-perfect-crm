@@ -1,13 +1,8 @@
-import { motion } from "framer-motion";
 import { MessageCircle, Users, BarChart2, Send, Brain } from "lucide-react";
 
 export default function Sidebar() {
   return (
-    <motion.div 
-      initial={{ x: -100 }} 
-      animate={{ x: 0 }} 
-      className="w-64 bg-white/5 backdrop-blur-xl border-r border-white/10 p-4 text-white"
-    >
+    <div className="w-64 bg-white/5 backdrop-blur-xl border-r border-white/10 p-4 text-white">
       <h1 className="text-xl font-bold mb-6">Aura CRM</h1>
 
       <nav className="space-y-4">
@@ -27,6 +22,6 @@ export default function Sidebar() {
           <Brain size={18}/> AI Trainer
         </p>
       </nav>
-    </motion.div>
+    </div>
   );
 }

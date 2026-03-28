@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 const data = [
@@ -11,7 +11,7 @@ const data = [
 
 function StatCard({ title, value }) {
   return (
-    <Card className="rounded-2xl bg-white/10 backdrop-blur-lg border border-white/10 shadow-lg p-4 hover:scale-105 transition">
+    <Card className="hover:scale-105 transition">
       <CardContent>
         <p className="text-gray-300">{title}</p>
         <h2 className="text-2xl font-bold text-white">{value}</h2>

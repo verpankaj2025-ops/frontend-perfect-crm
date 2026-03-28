@@ -1,55 +1,44 @@
-import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-import ChatList from "../inbox/ChatList";
-import ChatWindow from "../inbox/ChatWindow";
-import LeadDetails from "../leads/LeadDetails";
-import AITrainer from "../ai/AITrainer";
-import WhatsAppConnect from "../integrations/WhatsAppConnect";
-import Broadcast from "../automation/Broadcast"; // 🔥 added
+const data = [
+  { name: "Mon", leads: 10 },
+  { name: "Tue", leads: 20 },
+  { name: "Wed", leads: 15 },
+  { name: "Thu", leads: 25 },
+  { name: "Fri", leads: 30 },
+];
 
-const Dashboard = () => {
-  const [selectedChat, setSelectedChat] = useState(null);
-
+function StatCard({ title, value }) {
   return (
-    <div className="grid grid-cols-5 h-screen">
-      
-      {/* LEFT SIDEBAR */}
-      <div className="col-span-1 flex flex-col border-r bg-gray-50">
-        
-        {/* Chat List */}
-        <div className="flex-1 overflow-y-auto">
-          <ChatList onSelect={setSelectedChat} />
-        </div>
-
-        {/* AI Trainer */}
-        <div className="p-2 border-t">
-          <AITrainer />
-        </div>
-
-        {/* WhatsApp Connect */}
-        <div className="p-2 border-t">
-          <WhatsAppConnect />
-        </div>
-
-        {/* 🔥 Broadcast Feature */}
-        <div className="p-2 border-t">
-          <Broadcast />
-        </div>
-
-      </div>
-
-      {/* CENTER CHAT */}
-      <div className="col-span-3">
-        <ChatWindow selectedChat={selectedChat} />
-      </div>
-
-      {/* RIGHT PANEL */}
-      <div className="col-span-1 border-l bg-white">
-        <LeadDetails chat={selectedChat} />
-      </div>
-
-    </div>
+    <Card className="rounded-2xl shadow p-4">
+      <CardContent>
+        <p className="text-gray-500">{title}</p>
+        <h2 className="text-2xl font-bold">{value}</h2>
+      </CardContent>
+    </Card>
   );
-};
+}
 
-export default Dashboard;
+export default function Dashboard() {
+  return (
+    <>
+      <div className="grid grid-cols-3 gap-4 mb-6">
+        <StatCard title="Total Leads" value="120" />
+        <StatCard title="Active Chats" value="35" />
+        <StatCard title="Conversions" value="18" />
+      </div>
+
+      <div className="bg-white p-4 rounded-2xl shadow">
+        <h3 className="mb-4 font-semibold">Leads Overview</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={data}>
+            <XAxis dataKey="name" />
+            <Tooltip />
+            <Bar dataKey="leads" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </>
+  );
+}

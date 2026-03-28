@@ -11,10 +11,10 @@ const data = [
 
 function StatCard({ title, value }) {
   return (
-    <Card className="rounded-2xl shadow p-4">
+    <Card className="rounded-2xl bg-white/10 backdrop-blur-lg border border-white/10 shadow-lg p-4 hover:scale-105 transition">
       <CardContent>
-        <p className="text-gray-500">{title}</p>
-        <h2 className="text-2xl font-bold">{value}</h2>
+        <p className="text-gray-300">{title}</p>
+        <h2 className="text-2xl font-bold text-white">{value}</h2>
       </CardContent>
     </Card>
   );
@@ -29,11 +29,11 @@ export default function Dashboard() {
         <StatCard title="Conversions" value="18" />
       </div>
 
-      <div className="bg-white p-4 rounded-2xl shadow">
-        <h3 className="mb-4 font-semibold">Leads Overview</h3>
+      <div className="bg-white/10 backdrop-blur-lg border border-white/10 p-4 rounded-2xl shadow">
+        <h3 className="mb-4 font-semibold text-white">Leads Overview</h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={data}>
-            <XAxis dataKey="name" />
+            <XAxis dataKey="name" stroke="#ccc" />
             <Tooltip />
             <Bar dataKey="leads" />
           </BarChart>
